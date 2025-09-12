@@ -1,0 +1,187 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f4f6f8;
+  scroll-behavior: smooth;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #0071c5, #0059b3, #003c7e);
+  color: #fff;
+  text-align: center;
+  padding: 5rem 1rem;
+  border-radius: 15px;
+  margin: 1rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+.hero .logo {
+  width: 130px;
+  margin-bottom: 1rem;
+}
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  max-width: 750px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+/* Quick Jump */
+.quick-jump {
+  background: #e6eaf0;
+  padding: 1rem;
+  border-radius: 12px;
+  margin: 1rem auto;
+  width: 95%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.quick-jump ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.quick-jump a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #003c7e;
+  transition: color 0.3s;
+}
+.quick-jump a:hover {
+  color: #0059b3;
+}
+
+/* Timeline */
+.timeline-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  padding: 2rem 1rem;
+  -webkit-overflow-scrolling: touch; /* smooth scroll for iOS */
+}
+
+/* Scrollbar */
+.timeline-container::-webkit-scrollbar {
+  height: 10px;
+}
+.timeline-container::-webkit-scrollbar-track {
+  background: #e6eaf0;
+  border-radius: 6px;
+}
+.timeline-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0071c5, #0059b3, #003c7e);
+  border-radius: 6px;
+}
+.timeline-container {
+  scrollbar-width: thin;
+  scrollbar-color: #0059b3 #e6eaf0;
+}
+
+
+/* Timeline Items */
+.timeline-item, .benchmark {
+  flex: 0 0 300px; /* base width */
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+/* Benchmark Cards */
+.benchmark .rect {
+  width: 60px;
+  height: 40px;
+  background: #0059b3;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.benchmark p {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Timeline Cards */
+.timeline-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.timeline-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+.timeline-card img.card-img {
+  width: 100%;
+  max-height: 60%;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+.timeline-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.timeline-card p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.timeline-card:hover p {
+  opacity: 1;
+}
+
+/* Year Labels */
+.year {
+  font-weight: 600;
+  color: #003c7e;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.year:hover {
+  color: #0059b3;
+}
+
+/* Spacer for items without a year */
+.timeline-item.no-year {
+  padding-top: 2rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline-item, .benchmark { flex: 0 0 250px; }
+}
+@media (max-width: 480px) {
+  .timeline-item, .benchmark { flex: 0 0 200px; }
+}
