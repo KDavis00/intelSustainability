@@ -1,7 +1,7 @@
-Intel: Sustainability Through the Ages
+Intel: Sustainability Through the Ages Timeline Website
 Overview
 
-"Intel: Sustainability Through the Ages" is an interactive, horizontally scrolling timeline showcasing Intel's journey toward innovation and sustainability from the 1960s to the present. The timeline highlights key milestones in technology, environmental responsibility, and corporate social initiatives, allowing users to explore Intel’s historical impact in an engaging visual format.
+This is an interactive, horizontally scrolling timeline showcasing Intel's journey toward innovation and sustainability from the 1960s to the present. The timeline highlights key milestones in technology, environmental responsibility, and corporate social initiatives, allowing users to explore Intel’s historical impact in an engaging visual format.
 
 The project is built using HTML and CSS and emphasizes smooth scrolling, responsive design, and interactive card elements.
 
