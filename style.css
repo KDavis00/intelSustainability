@@ -5,6 +5,62 @@
   box-sizing: border-box;
 }
 
+/* Carousel styling */
+#intelCarousel .carousel-item {
+  height: 300px;
+  overflow: hidden;
+}
+
+#intelCarousel .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel-text-container {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 4px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-text-container .text-content {
+  display: none;
+}
+
+.carousel-text-container .text-content.active {
+  display: block;
+}
+
+.carousel-text-container h5 {
+  color: #000;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.carousel-text-container p {
+  color: #000;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Add JavaScript for text synchronization */
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const carousel = document.getElementById('intelCarousel');
+  const textContents = document.querySelectorAll('.text-content');
+  
+  carousel.addEventListener('slide.bs.carousel', function(event) {
+    textContents.forEach(content => content.classList.remove('active'));
+    const nextText = document.querySelector(`.text-content[data-slide="${event.to}"]`);
+    nextText.classList.add('active');
+  });
+});
+</script>
+
 /* Body */
 body {
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
