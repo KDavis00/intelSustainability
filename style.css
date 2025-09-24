@@ -5,6 +5,105 @@
   box-sizing: border-box;
 }
 
+/* RTL Support */
+[dir='rtl'] .carousel-control-prev {
+  right: 0;
+  left: auto;
+}
+
+[dir='rtl'] .carousel-control-next {
+  left: 0;
+  right: auto;
+}
+
+[dir='rtl'] .carousel-indicators {
+  flex-direction: row-reverse;
+}
+
+[dir='rtl'] .timeline-item {
+  margin-right: 3rem;
+  margin-left: 0;
+}
+
+[dir='rtl'] .quick-jump ul {
+  flex-direction: row-reverse;
+}
+
+/* Responsive text handling */
+@media screen and (max-width: 768px) {
+  .carousel-text-container {
+    padding: 1rem;
+    max-height: 250px;
+  }
+
+  .carousel-text-container h5 {
+    font-size: clamp(0.875rem, 4vw, 1.125rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .carousel-text-container p {
+    font-size: clamp(0.75rem, 3.5vw, 0.875rem);
+    line-height: 1.4;
+  }
+}
+
+/* Text expansion handling */
+[style*="transform: scale"] .carousel-text-container {
+  transform-origin: top left;
+  max-height: none;
+  height: auto;
+}
+
+/* Languages with different character heights */
+:lang(ar),
+:lang(fa),
+:lang(ur) {
+  line-height: 1.8;
+}
+
+:lang(ja),
+:lang(zh-CN) {
+  line-height: 1.7;
+}
+
+/* Language-specific adjustments for rectangles */
+[dir="rtl"] .benchmark .rect,
+[dir="rtl"] .timeline-card {
+  text-align: center;
+}
+
+[lang="ar"] .benchmark .rect,
+[lang="fa"] .benchmark .rect,
+[lang="ur"] .benchmark .rect {
+  padding: 0.6rem 1rem;
+}
+
+[lang="de"] .benchmark .rect,
+[lang="ru"] .benchmark .rect {
+  min-width: 70px;
+  padding: 0.5rem 0.7rem;
+}
+
+/* Adjustments for longer text in any language */
+@media screen and (max-width: 768px) {
+  .benchmark .rect {
+    min-width: 50px;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .benchmark .rect .label {
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+  }
+  
+  .timeline-card h3 {
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+  }
+  
+  .timeline-card p {
+    font-size: clamp(0.7rem, 1.6vw, 0.8rem);
+  }
+}
+
 /* Carousel styling */
 #intelCarousel .carousel-item {
   height: 300px;
@@ -22,44 +121,47 @@
   background-color: #f8f9fa;
   padding: 1.5rem;
   border-radius: 4px;
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  max-height: 300px; /* Match carousel height */
 }
 
 .carousel-text-container .text-content {
   display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .carousel-text-container .text-content.active {
   display: block;
+  opacity: 1;
 }
 
 .carousel-text-container h5 {
   color: #000;
   margin-bottom: 1rem;
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.4;
+  word-wrap: break-word;
 }
 
 .carousel-text-container p {
   color: #000;
   line-height: 1.6;
   margin-bottom: 0;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
-
-/* Add JavaScript for text synchronization */
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const carousel = document.getElementById('intelCarousel');
-  const textContents = document.querySelectorAll('.text-content');
-  
-  carousel.addEventListener('slide.bs.carousel', function(event) {
-    textContents.forEach(content => content.classList.remove('active'));
-    const nextText = document.querySelector(`.text-content[data-slide="${event.to}"]`);
-    nextText.classList.add('active');
-  });
-});
-</script>
 
 /* Body */
 body {
@@ -165,8 +267,11 @@ body {
 }
 
 .benchmark .rect {
-  width: 60px;
-  height: 40px;
+  width: auto;
+  min-width: 60px;
+  height: auto;
+  min-height: 40px;
+  padding: 0.5rem 1rem;
   background: #0059b3;
   color: #fff;
   display: inline-flex;
@@ -175,12 +280,27 @@ body {
   border-radius: 8px;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.benchmark .rect .label {
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  line-height: 1.2;
+  display: block;
+  width: 100%;
 }
 
 .benchmark p {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   color: #333;
+  max-width: 300px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: start;
 }
 
 .timeline-card {
@@ -209,18 +329,26 @@ body {
 }
 
 .timeline-card h3 {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   font-weight: 700;
   margin-bottom: 0.5rem;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .timeline-card p {
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
   line-height: 1.4;
   opacity: 0;
   max-height: 0;
   overflow: hidden;
   transition: opacity 0.4s ease, max-height 0.4s ease;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .timeline-card:hover p {
